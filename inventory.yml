@@ -1,0 +1,28 @@
+all:
+  children:
+    ceos:
+      hosts:
+        clab-routing-switch1:
+          ansible_host: 172.100.100.11
+        clab-routing-switch2:
+          ansible_host: 172.100.100.12
+        clab-routing-switch3:
+          ansible_host: 172.100.100.13
+        clab-routing-switch4:
+          ansible_host: 172.100.100.14
+        clab-routing-switch5:
+          ansible_host: 172.100.100.15
+        clab-routing-switch6:
+          ansible_host: 172.100.100.16
+        clab-routing-switch7:
+          ansible_host: 172.100.100.17
+        clab-routing-switch8:
+          ansible_host: 172.100.100.18
+    linux:
+      hosts:
+        clab-routing-host1:
+          ansible_host: 172.100.100.51
+        clab-routing-host2:
+          ansible_host: 172.100.100.52
+        clab-routing-host3:
+          ansible_host: 172.100.100.53

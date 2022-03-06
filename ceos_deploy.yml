@@ -1,0 +1,43 @@
+---
+- name: configure switches 
+  hosts: ceos
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.eos
+  
+  tasks:
+  - name: deploy global
+    eos_config:
+      src: ./templates/ceos_global.j2
+  
+  - name: deploy vlan
+    eos_config:
+      src: ./templates/ceos_vlans.j2
+    when: 
+      - hostvars[inventory_hostname]['vlans'] is defined
+  
+  - name: deploy untagged ports
+    eos_config:
+      src: ./templates/ceos_untagged_ports.j2
+    when: 
+      - hostvars[inventory_hostname]['untagged_ports'] is defined
+  
+  - name: deploy l3 interfaces
+    eos_config:
+      src: ./templates/ceos_l3_interfaces.j2
+    when: 
+      - hostvars[inventory_hostname]['l3_interfaces'] is defined
+  
+  - name: deploy vlan interfaces
+    eos_config:
+      src: ./templates/ceos_vlan_interfaces.j2
+    when: 
+      - hostvars[inventory_hostname]['vlan_interfaces'] is defined
+  
+  - name: deploy ospf interfaces
+    eos_config:
+      src: ./templates/ceos_ospf_interfaces.j2
+    when: 
+      - hostvars[inventory_hostname]['ospf'] is defined
+  

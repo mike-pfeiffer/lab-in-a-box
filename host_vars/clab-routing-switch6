@@ -1,0 +1,25 @@
+---  
+l3_interfaces:
+  - name: Ethernet1
+    ipv4: 10.0.56.2/30
+    ipv6: 2001:10:0:56::2/64
+  - name: Ethernet2
+    ipv4: 10.0.68.1/30
+    ipv6: 2001:10:0:68::1/64
+  - name: Ethernet3
+    ipv4: 10.0.67.1/30
+    ipv6: 2001:10:0:67::1/64
+ospf:
+  - name: Ethernet1
+    area: 0.0.0.0 
+  - name: Ethernet2
+    area: 0.0.0.0 
+  - name: Ethernet3
+    area: 0.0.0.0 
+reachable:
+  - 10.0.56.1
+  - 10.0.67.2
+  - 10.0.68.2
+  - 2001:10:0:56::1
+  - 2001:10:0:67::2
+  - 2001:10:0:68::2

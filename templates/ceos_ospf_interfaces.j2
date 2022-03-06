@@ -1,0 +1,5 @@
+{% for l3 in ospf %}
+interface {{ l3.name }}
+   ipv6 ospf 1 area {{ l3.area }}
+!
+{% endfor %}

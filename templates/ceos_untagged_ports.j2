@@ -1,0 +1,8 @@
+{% for untagged in untagged_ports %}
+interface {{ untagged.name }}
+   switchport
+   switchport mode access 
+   switchport access vlan {{ untagged.vlan}}
+   no shutdown
+!
+{% endfor %}

@@ -1,0 +1,5 @@
+---
+ansible_connection: ssh
+ansible_os_family: Debian
+ansible_become: true
+ansible_become_method: sudo

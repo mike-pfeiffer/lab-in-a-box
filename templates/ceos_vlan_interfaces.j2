@@ -1,0 +1,6 @@
+{% for vlan in vlan_interfaces %}
+interface {{ vlan.name }}
+   ip address {{ vlan.ipv4 }}
+   ipv6 address {{ vlan.ipv6 }}
+!
+{% endfor %}

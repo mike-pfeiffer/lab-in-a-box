@@ -1,0 +1,40 @@
+---
+- name: validate deployment 
+  hosts: ceos
+  connection: local
+  gather_facts: false
+  collections:
+    - arista.eos
+  
+  tasks:
+  - name: test local connectivity 
+    eos_command:
+      commands: ping {{ item }}
+    register: ping_results
+    loop: "{{ hostvars[inventory_hostname]['reachable'] }}"
+    when: 
+      - hostvars[inventory_hostname]['reachable'] is defined
+
+  - name: parse 1
+    set_fact: 
+      parse_1: "{{ ping_results.results | json_query(query) }}"
+    vars:
+      query: "[].stdout_lines[]"
+  
+  - name: parse 2
+    set_fact: 
+      parse_2: "{{ parse_1 | json_query(query) }}"
+    vars:
+      query: "[]"
+  
+  - name: parse 3
+    set_fact: 
+      new_results: "{{ parse_2 | to_json | from_json | json_query(query) }}"
+    vars:
+      query: "[?contains(@, '100% packet loss') || contains(@, 'PING')]"
+  
+  - name: another local connectivity results 
+    debug:
+      msg: "{{ new_results }}"
+    when: 
+      - hostvars[inventory_hostname]['reachable'] is defined

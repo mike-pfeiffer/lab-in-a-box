@@ -1,0 +1,33 @@
+---
+- name: configure hosts 
+  hosts: linux
+  connection: local
+  gather_facts: false
+  ignore_errors: yes
+  collections:
+    - community.general
+  
+  tasks:
+  - name: add ipv4 address(es) 
+    command: ip addr add {{ item.ipv4 }} dev {{ item.dev }} 
+    loop: "{{ hostvars[inventory_hostname]['ipv4_addresses'] }}"
+    when: 
+      - hostvars[inventory_hostname]['ipv4_addresses'] is defined
+  
+  - name: add ipv4 route(s) 
+    command: ip route add {{ item.dest }} via {{ item.via }} 
+    loop: "{{ hostvars[inventory_hostname]['ipv4_routes'] }}"
+    when: 
+      - hostvars[inventory_hostname]['ipv4_routes'] is defined
+  
+  - name: add ipv6 address(es) 
+    command: ip addr add {{ item.ipv6 }} dev {{ item.dev }} 
+    loop: "{{ hostvars[inventory_hostname]['ipv6_addresses'] }}"
+    when: 
+      - hostvars[inventory_hostname]['ipv6_addresses'] is defined
+  
+  - name: add ipv6 route(s) 
+    command: ip route add {{ item.dest }} via {{ item.via }} 
+    loop: "{{ hostvars[inventory_hostname]['ipv6_routes'] }}"
+    when: 
+      - hostvars[inventory_hostname]['ipv6_routes'] is defined

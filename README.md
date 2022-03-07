@@ -143,7 +143,7 @@ ok: [clab-routing-switch4] => {
 ### Step 5 - Setup Hosts
 
 ```shell
-ansible-playbook -i inventory.yml ceos_deploy.yml  
+ansible-playbook -i inventory.yml linux_deploy.yml  
 ```    
 
 ### Step 6 - Validate Hosts
@@ -151,7 +151,7 @@ ansible-playbook -i inventory.yml ceos_deploy.yml
 See Step 4 for examples of good/bad output.
   
 ```shell
-ansible-playbook -i inventory.yml ceos_validate.yml  
+ansible-playbook -i inventory.yml linux_validate.yml  
 ```  
   
 ### Step 7 - Connect Guacamole to the Lab

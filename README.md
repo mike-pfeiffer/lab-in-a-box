@@ -167,7 +167,25 @@ docker network connect clab_mgmt guac
 ### SSH Access from Host  
   
 You can find the management IPs of all the devices in the lab in the **routing.yml** file. From the host you deployed this lab on you can simply SSH to the management IP. The default credentials for everything should be **admin/admin** unless you entered something different along the way.
-  
+
+```shell
++----+----------------------+--------------+-----------------+-------+---------+-------------------+------------------------+
+| #  |         Name         | Container ID |      Image      | Kind  |  State  |   IPv4 Address    |      IPv6 Address      |
++----+----------------------+--------------+-----------------+-------+---------+-------------------+------------------------+
+|  1 | clab-routing-host1   | 6534611a67e0 | nettest:1.0.0   | linux | running | 172.100.100.51/24 | 2001:172:100:100::a/80 |
+|  2 | clab-routing-host2   | 8fce1370292b | nettest:1.0.0   | linux | running | 172.100.100.52/24 | 2001:172:100:100::9/80 |
+|  3 | clab-routing-host3   | 077e48a45eb3 | nettest:1.0.0   | linux | running | 172.100.100.53/24 | 2001:172:100:100::d/80 |
+|  4 | clab-routing-switch1 | 13da2d2d71c2 | ceoslab:4.27.2F | ceos  | running | 172.100.100.11/24 | 2001:172:100:100::5/80 |
+|  5 | clab-routing-switch2 | a9ec6d0dbf93 | ceoslab:4.27.2F | ceos  | running | 172.100.100.12/24 | 2001:172:100:100::7/80 |
+|  6 | clab-routing-switch3 | af2749d238dc | ceoslab:4.27.2F | ceos  | running | 172.100.100.13/24 | 2001:172:100:100::8/80 |
+|  7 | clab-routing-switch4 | 3838b6ab80ce | ceoslab:4.27.2F | ceos  | running | 172.100.100.14/24 | 2001:172:100:100::b/80 |
+|  8 | clab-routing-switch5 | 7563cd8ccfc4 | ceoslab:4.27.2F | ceos  | running | 172.100.100.15/24 | 2001:172:100:100::3/80 |
+|  9 | clab-routing-switch6 | fe884cbfe9cd | ceoslab:4.27.2F | ceos  | running | 172.100.100.16/24 | 2001:172:100:100::c/80 |
+| 10 | clab-routing-switch7 | ce262dc8a0fc | ceoslab:4.27.2F | ceos  | running | 172.100.100.17/24 | 2001:172:100:100::6/80 |
+| 11 | clab-routing-switch8 | 536277b101ea | ceoslab:4.27.2F | ceos  | running | 172.100.100.18/24 | 2001:172:100:100::4/80 |
++----+----------------------+--------------+-----------------+-------+---------+-------------------+------------------------+
+```
+ 
 ### Using Guacamole
   
 Assuming you chose to deploy Guacamole, it should be accessible on your hosts IP address. Browse to the address using your Web browser. For my host, the link is as shown below.
